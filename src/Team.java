@@ -37,10 +37,7 @@ public class Team {
     public String getResults() {
         String resultsString = "";
         for(int i = 0; i < results.length; i++) {
-            resultsString += results[i];
-            if(i != results.length - 1) {
-                resultsString += ",";
-            }
+            resultsString += results[i] + (i != results.length - 1?",":"");
         }
         return resultsString;
     }
