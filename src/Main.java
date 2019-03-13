@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Main {
-//    public static final int TeamNumber = 20;
-//   public static Team[] teams = new Team[TeamNumber];
 
     public static void main(String[] args) {
-        var a = 3;
         Team [] teams;
         int TeamNumber = 20;
         teams = getTeamsFromCsvFile(TeamNumber);
