@@ -4,6 +4,7 @@ public class Team {
     private String name;
     private String[] results;
     private int points;
+    private int gamesPlayed;
 
 
 
@@ -20,12 +21,15 @@ public class Team {
 
     public void countPoints() {
         for(int i = 0; i < results.length; i++) {
-            int teamScore = Integer.valueOf(results[i].substring(0, results[i].indexOf(":")));
-            int enemyScore = Integer.valueOf(results[i].substring(results[i].indexOf(":") + 1));
-            if(teamScore > enemyScore) {
-                points += 3;
-            } else if(teamScore == enemyScore) {
-                points +=1;
+            if (!results[i].equals("x")) {
+                int teamScore = Integer.valueOf(results[i].substring(0, results[i].indexOf(":")));
+                int enemyScore = Integer.valueOf(results[i].substring(results[i].indexOf(":") + 1));
+                if(teamScore > enemyScore) {
+                    points += 3;
+                } else if(teamScore == enemyScore) {
+                    points +=1;
+                }
+                gamesPlayed++;
             }
         }
     }
@@ -44,6 +48,10 @@ public class Team {
 
     public int getPoints() {
         return points;
+    }
+
+    public int getGamesPlayed() {
+        return gamesPlayed;
     }
 
     @Override

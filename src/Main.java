@@ -5,18 +5,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Main {
-    public static final int TeamNumber = 20;
-    public static Team[] teams = new Team[TeamNumber];
+//    public static final int TeamNumber = 20;
+//   public static Team[] teams = new Team[TeamNumber];
 
     public static void main(String[] args) {
-        readCsvFile();
+        var a = 3;
+        Team [] teams;
+        int TeamNumber = 20;
+        teams = getTeamsFromCsvFile(TeamNumber);
         sortTeamsByPoints(teams);
         writeCsvFile(teams);
     }
 
-    public static void readCsvFile() {
+    public static Team[] getTeamsFromCsvFile(int TeamNumber) {
+        Team[] teams = new Team[TeamNumber];
         int lineCounter = 0;
-        String[][] rows = new String[TeamNumber][];
+        String[][] rows = new String[20][];
         try {
             BufferedReader br = new BufferedReader(new FileReader("premier_league.csv"));
             String line;
@@ -28,6 +32,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return teams;
     }
 
     public static void sortTeamsByPoints(Team[] teams) { // Sorting algorithm Bubble sort
@@ -38,6 +43,12 @@ public class Main {
                     tempTeam = teams[j - 1];
                     teams[j - 1] = teams[j];
                     teams[j] = tempTeam;
+                } else if (teams[j].getPoints() == teams[j - 1].getPoints()) {
+                    if (teams[i].getGamesPlayed() > teams[i].getGamesPlayed()) {
+                        tempTeam = teams[j - 1];
+                        teams[j - 1] = teams[j];
+                        teams[j] = tempTeam;
+                    }
                 }
             }
         }
@@ -55,5 +66,6 @@ public class Main {
         }
         System.out.println("Done");
     }
+
 
 }
